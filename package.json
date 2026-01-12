@@ -7,10 +7,11 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "vercel-start": "node server.js",
+    "start": "npm run swagger-autogen && node server.js",
+    "vercel-start": "npm run swagger-autogen && node server.js",
     "dev": "nodemon server.js",
     "swagger-autogen": "node swagger.js",
+    "build": "npm run swagger-autogen",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
