@@ -1,0 +1,1305 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Learning Portal API",
+    "description": "API documentation for Learning Portal application",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "User Information",
+      "description": "User information management endpoints"
+    },
+    {
+      "name": "Assignments",
+      "description": "Assignment management endpoints"
+    },
+    {
+      "name": "Quizes",
+      "description": "Quiz management endpoints"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/users/create": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "fullName": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "mobileNumber": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "role": {
+                  "example": "any"
+                },
+                "className": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "User Information"
+        ]
+      }
+    },
+    "/api/users/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "User Information"
+        ]
+      }
+    },
+    "/api/users/role/{role}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "User Information"
+        ]
+      }
+    },
+    "/api/users/login": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "User Information"
+        ]
+      }
+    },
+    "/api/assignments/add": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/AddAssignment"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/submit": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/SubmitAssignment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/review": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/ReviewAssignment"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/assigned-to/{assignedTo}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "assignedTo",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/teacher/{teacherCode}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "teacherCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/submitted-students/{assignmentCode}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "assignmentCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/student-submission/{assignmentCode}/{studentCode}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "assignmentCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "studentCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/student-report/{studentCode}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "studentCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/assignments/{assignmentCode}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "assignmentCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Assignments"
+        ]
+      }
+    },
+    "/api/quizes/add": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/AddQuize"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Quizes"
+        ]
+      }
+    },
+    "/api/quizes/submit": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/SubmitQuize"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Quizes"
+        ]
+      }
+    },
+    "/api/quizes/review": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/ReviewQuize"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Quizes"
+        ]
+      }
+    },
+    "/api/quizes/all": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Quizes"
+        ]
+      }
+    },
+    "/api/quizes/assigned-to/{assignedTo}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "assignedTo",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Quizes"
+        ]
+      }
+    },
+    "/api/quizes/teacher/{teacherCode}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "teacherCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Quizes"
+        ]
+      }
+    },
+    "/api/quizes/submitted-students/{quizeCode}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "quizeCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Quizes"
+        ]
+      }
+    },
+    "/api/quizes/student-submission/{quizeCode}/{studentCode}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "quizeCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "studentCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Quizes"
+        ]
+      }
+    },
+    "/api/quizes/{quizeCode}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "quizeCode",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Quizes"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "string",
+          "example": "John Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "john@example.com"
+        },
+        "mobileNumber": {
+          "type": "string",
+          "example": "1234567890"
+        },
+        "password": {
+          "type": "string",
+          "example": "password123"
+        },
+        "role": {
+          "type": "string",
+          "example": "student"
+        },
+        "className": {
+          "type": "string",
+          "example": "Class 10"
+        }
+      }
+    },
+    "UserResponse": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": "507f1f77bcf86cd799439011"
+        },
+        "fullName": {
+          "type": "string",
+          "example": "John Doe"
+        },
+        "email": {
+          "type": "string",
+          "example": "john@example.com"
+        },
+        "mobileNumber": {
+          "type": "string",
+          "example": "1234567890"
+        },
+        "role": {
+          "type": "string",
+          "example": "student"
+        },
+        "className": {
+          "type": "string",
+          "example": "Class 10"
+        },
+        "userCode": {
+          "type": "string",
+          "example": "JOH1234"
+        },
+        "createdAt": {
+          "type": "string",
+          "example": "2024-01-01T00:00:00.000Z"
+        },
+        "updatedAt": {
+          "type": "string",
+          "example": "2024-01-01T00:00:00.000Z"
+        }
+      }
+    },
+    "Login": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "example": "john@example.com"
+        },
+        "password": {
+          "type": "string",
+          "example": "password123"
+        }
+      }
+    },
+    "Error": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": false
+        },
+        "message": {
+          "type": "string",
+          "example": "Error message here"
+        }
+      }
+    },
+    "Success": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "example": true
+        },
+        "message": {
+          "type": "string",
+          "example": "Success message here"
+        }
+      }
+    },
+    "Question": {
+      "type": "object",
+      "properties": {
+        "questionNo": {
+          "type": "number",
+          "example": 1
+        },
+        "question": {
+          "type": "string",
+          "example": "What is 2+2?"
+        },
+        "difficulties": {
+          "type": "string",
+          "example": "Easy"
+        }
+      }
+    },
+    "Questions": {
+      "type": "object",
+      "properties": {
+        "q1": {
+          "type": "object",
+          "properties": {
+            "questionNo": {
+              "type": "number",
+              "example": 1
+            },
+            "question": {
+              "type": "string",
+              "example": "What is 2+2?"
+            },
+            "difficulties": {
+              "type": "string",
+              "example": "Easy"
+            }
+          }
+        },
+        "q2": {
+          "type": "object",
+          "properties": {
+            "questionNo": {
+              "type": "number",
+              "example": 2
+            },
+            "question": {
+              "type": "string",
+              "example": "Solve for x: 2x + 5 = 15"
+            },
+            "difficulties": {
+              "type": "string",
+              "example": "Medium"
+            }
+          }
+        }
+      }
+    },
+    "AddAssignment": {
+      "type": "object",
+      "properties": {
+        "teacherCode": {
+          "type": "string",
+          "example": "TEA1234"
+        },
+        "assignmentName": {
+          "type": "string",
+          "example": "Math Assignment 1"
+        },
+        "subject": {
+          "type": "string",
+          "example": "Mathematics"
+        },
+        "dueDate": {
+          "type": "string",
+          "example": "2024-09-15"
+        },
+        "assignedTo": {
+          "type": "string",
+          "example": "8class A"
+        },
+        "questions": {
+          "type": "object",
+          "properties": {
+            "q1": {
+              "type": "object",
+              "properties": {
+                "questionNo": {
+                  "type": "number",
+                  "example": 1
+                },
+                "question": {
+                  "type": "string",
+                  "example": "What is 2+2?"
+                },
+                "difficulties": {
+                  "type": "string",
+                  "example": "Easy"
+                }
+              }
+            },
+            "q2": {
+              "type": "object",
+              "properties": {
+                "questionNo": {
+                  "type": "number",
+                  "example": 2
+                },
+                "question": {
+                  "type": "string",
+                  "example": "Solve for x: 2x + 5 = 15"
+                },
+                "difficulties": {
+                  "type": "string",
+                  "example": "Medium"
+                }
+              }
+            }
+          },
+          "additionalProperties": {
+            "$ref": "#/definitions/Question"
+          }
+        }
+      }
+    },
+    "StudentAnswer": {
+      "type": "object",
+      "properties": {
+        "questionNo": {
+          "type": "number",
+          "example": 1
+        },
+        "answer": {
+          "type": "string",
+          "example": "4"
+        },
+        "rate": {
+          "type": "number",
+          "example": 6
+        }
+      }
+    },
+    "SubmitAssignment": {
+      "type": "object",
+      "properties": {
+        "assignmentCode": {
+          "type": "string",
+          "example": "MAT1234"
+        },
+        "studentCode": {
+          "type": "string",
+          "example": "STU5678"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "questionNo": {
+                "type": "number",
+                "example": 2
+              },
+              "answer": {
+                "type": "string",
+                "example": "x = 5"
+              },
+              "rate": {
+                "type": "number",
+                "example": 5
+              }
+            }
+          }
+        }
+      }
+    },
+    "ReviewAssignment": {
+      "type": "object",
+      "properties": {
+        "assignmentCode": {
+          "type": "string",
+          "example": "MAT1234"
+        },
+        "studentCode": {
+          "type": "string",
+          "example": "STU5678"
+        },
+        "overallScore": {
+          "type": "number",
+          "example": 85
+        },
+        "teacherComments": {
+          "type": "string",
+          "example": "Good work!"
+        },
+        "summary": {
+          "type": "string",
+          "example": "This assignment covers algebra and geometry topics."
+        },
+        "needPractice": {
+          "type": "array",
+          "example": [
+            "Geometry"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "topicUnderCovered": {
+          "type": "array",
+          "example": [
+            "Algebra",
+            "Geometry"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "questionRatings": {
+          "type": "object",
+          "properties": {
+            "q1": {
+              "type": "number",
+              "example": 6
+            },
+            "q2": {
+              "type": "number",
+              "example": 8
+            }
+          }
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "pdf"
+              },
+              "link": {
+                "type": "string",
+                "example": "http://example.com/math_assignment_1.pdf"
+              }
+            }
+          }
+        }
+      }
+    },
+    "QuizQuestion": {
+      "type": "object",
+      "properties": {
+        "questionNo": {
+          "type": "number",
+          "example": 1
+        },
+        "question": {
+          "type": "string",
+          "example": "What is 2+2?"
+        },
+        "options": {
+          "type": "object",
+          "properties": {
+            "op1": {
+              "type": "string",
+              "example": "3"
+            },
+            "op2": {
+              "type": "string",
+              "example": "4"
+            },
+            "op3": {
+              "type": "string",
+              "example": "5"
+            },
+            "op4": {
+              "type": "string",
+              "example": "6"
+            }
+          }
+        },
+        "correctOption": {
+          "type": "string",
+          "example": "op2"
+        },
+        "difficulties": {
+          "type": "string",
+          "example": "Easy"
+        }
+      }
+    },
+    "AddQuize": {
+      "type": "object",
+      "properties": {
+        "teacherCode": {
+          "type": "string",
+          "example": "TEA1234"
+        },
+        "quizeName": {
+          "type": "string",
+          "example": "Math Quiz 1"
+        },
+        "subject": {
+          "type": "string",
+          "example": "Mathematics"
+        },
+        "dueDate": {
+          "type": "string",
+          "example": "2024-09-15"
+        },
+        "assignedTo": {
+          "type": "string",
+          "example": "8class A"
+        },
+        "questions": {
+          "type": "object",
+          "properties": {
+            "q1": {
+              "type": "object",
+              "properties": {
+                "questionNo": {
+                  "type": "number",
+                  "example": 1
+                },
+                "question": {
+                  "type": "string",
+                  "example": "What is 2+2?"
+                },
+                "options": {
+                  "type": "object",
+                  "properties": {
+                    "op1": {
+                      "type": "string",
+                      "example": "3"
+                    },
+                    "op2": {
+                      "type": "string",
+                      "example": "4"
+                    },
+                    "op3": {
+                      "type": "string",
+                      "example": "5"
+                    },
+                    "op4": {
+                      "type": "string",
+                      "example": "6"
+                    }
+                  }
+                },
+                "correctOption": {
+                  "type": "string",
+                  "example": "op2"
+                },
+                "difficulties": {
+                  "type": "string",
+                  "example": "Easy"
+                }
+              }
+            },
+            "q2": {
+              "type": "object",
+              "properties": {
+                "questionNo": {
+                  "type": "number",
+                  "example": 2
+                },
+                "question": {
+                  "type": "string",
+                  "example": "What is 3*3?"
+                },
+                "options": {
+                  "type": "object",
+                  "properties": {
+                    "op1": {
+                      "type": "string",
+                      "example": "6"
+                    },
+                    "op2": {
+                      "type": "string",
+                      "example": "7"
+                    },
+                    "op3": {
+                      "type": "string",
+                      "example": "8"
+                    },
+                    "op4": {
+                      "type": "string",
+                      "example": "9"
+                    }
+                  }
+                },
+                "correctOption": {
+                  "type": "string",
+                  "example": "op4"
+                },
+                "difficulties": {
+                  "type": "string",
+                  "example": "Medium"
+                }
+              }
+            }
+          },
+          "additionalProperties": {
+            "$ref": "#/definitions/QuizQuestion"
+          }
+        }
+      }
+    },
+    "SubmitQuize": {
+      "type": "object",
+      "properties": {
+        "quizeCode": {
+          "type": "string",
+          "example": "QUI1234"
+        },
+        "studentCode": {
+          "type": "string",
+          "example": "STU5678"
+        },
+        "answers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "questionNo": {
+                "type": "number",
+                "example": 2
+              },
+              "answer": {
+                "type": "string",
+                "example": "op4"
+              }
+            }
+          }
+        }
+      }
+    },
+    "ReviewQuize": {
+      "type": "object",
+      "properties": {
+        "quizeCode": {
+          "type": "string",
+          "example": "QUI1234"
+        },
+        "studentCode": {
+          "type": "string",
+          "example": "STU5678"
+        },
+        "overallScore": {
+          "type": "number",
+          "example": 90
+        },
+        "teacherComments": {
+          "type": "string",
+          "example": "Excellent work!"
+        },
+        "summary": {
+          "type": "string",
+          "example": "This quiz covers basic arithmetic operations."
+        },
+        "needPractice": {
+          "type": "array",
+          "example": [],
+          "items": {}
+        },
+        "topicUnderCovered": {
+          "type": "array",
+          "example": [
+            "Multiplication"
+          ],
+          "items": {
+            "type": "string"
+          }
+        },
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "example": "pdf"
+              },
+              "link": {
+                "type": "string",
+                "example": "http://example.com/math_quiz_1.pdf"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
