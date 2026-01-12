@@ -12,7 +12,17 @@ This is a Node.js/Express learning management system with MongoDB. The applicati
 
 **CRITICAL**: Use `.env` file for all configuration instead of hardcoding values.
 
-1. **Local Development**: Copy `.env.example` to `.env` with development values
+1. **Local Development**: 
+   - Create `.env` from `.env.example` and populate with local values (do NOT use example's MongoDB credentials)
+   - Example:
+     ```
+     NODE_ENV=development
+     PORT=3000
+     HOST=localhost
+     MONGODB_URI=mongodb://localhost:27017/learning_local
+     SWAGGER_HOST=localhost:3000
+     ```
+
 2. **Production**: Create `.env` on server with production values:
    ```
    NODE_ENV=production
@@ -21,9 +31,12 @@ This is a Node.js/Express learning management system with MongoDB. The applicati
    MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
    SWAGGER_HOST=api.ventureconsultancyservices.com
    ```
-3. **Never commit `.env`** - It's already in `.gitignore`. Only commit `.env.example`
+
+3. **Never commit `.env`** - It's already in `.gitignore`. Keep `.env.example` generic without real credentials
 
 The app loads `.env` via `require('dotenv').config()` in [server.js](server.js#L2).
+
+**⚠️ Security Issue**: [db.js](config/db.js) contains hardcoded MongoDB credentials in fallback URI. These should be removed or replaced with placeholder text matching `.env.example` convention.
 
 ## Key Design Patterns & Conventions
 
@@ -68,6 +81,12 @@ email: { type: String, required: [true, 'Email is required'], unique: true, matc
 - **Connection string**: Loaded from `MONGODB_URI` environment variable in `.env`
 - **Connection logs**: Server logs connection status and host; check "✓ MongoDB Connected" message in console
 
+### ⚠️ Current Issue: Server Not Starting
+The `app.listen()` call is **commented out** in [server.js](server.js#L16-L18). To enable the server:
+1. Uncomment lines 16-18 in [server.js](server.js)
+2. Ensure `.env` has valid `MONGODB_URI` before starting
+3. Run `npm start` or `npm run dev`
+
 ## Route Structure & Controller Patterns
 
 Each feature (User, Assignment, Quiz) has three files in parallel:
@@ -96,6 +115,14 @@ Before deploying to production:
 3. ✅ Run `npm run swagger-autogen` to generate docs with production domain
 4. ✅ Test API endpoints at `https://api.ventureconsultancyservices.com/api-docs`
 5. ✅ Never commit `.env` file (use `.env.example` template instead)
+
+## Vercel Deployment
+
+[vercel.json](vercel.json) is configured for serverless deployment:
+- **Entry point**: `server.js` (configured as `vercel-start` script in package.json)
+- **Environment variables**: Must be set in Vercel project settings dashboard (mirrors `.env` values)
+- **Key variables**: `MONGODB_URI`, `SWAGGER_HOST`, `NODE_ENV`
+- During deployment, Vercel runs `npm run vercel-start` which executes `node server.js`
 
 ## Extension Points
 

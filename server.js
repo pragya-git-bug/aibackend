@@ -21,3 +21,5 @@ connectDB()
         console.error('Please ensure MongoDB is running or set MONGODB_URI environment variable');
         process.exit(1);
     });
+
+module.exports = app;
